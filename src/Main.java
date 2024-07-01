@@ -1,4 +1,4 @@
-public class main {
+public class Main {
 
   public static void main(String[] args) {
     float[] inputs = new float[] {1.1f, 1.2f, 1.3f};
