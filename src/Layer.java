@@ -28,7 +28,7 @@ public class Layer {
    * @return - A matrix of the altered data
    */
   public float[][] pass(float[][] inputs) {
-
+    
   }
   
   /**
