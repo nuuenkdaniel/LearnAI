@@ -15,8 +15,8 @@ public class Layer {
     biases = new float[nNeurons];
     
     //Populates the weights with random numbers from -0.1 to 0.1
-    for(int i = 0; i < weights.size; i++) {
-      for(int j = 0; i < weights[0].size; j++) {
+    for(int i = 0; i < weights.length; i++) {
+      for(int j = 0; i < weights[0].length; j++) {
         weights[i][j] = rand.nextFloat()*0.2f - 0.1f;
       }
     }
