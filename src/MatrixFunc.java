@@ -11,7 +11,7 @@ public class MatrixFunc {
     float[][] product = new float[m1.length][m2[0].length];
     float dotP = 0;
     for(int i = 0; i < m1.length; i++) {
-      for(int j = 0; i < m2[0].length; j++) {
+      for(int j = 0; j < m2[0].length; j++) {
         for(int k = 0; k < m1[0].length; k++) {
           dotP += m1[i][k]*m2[k][j];
         }
@@ -23,23 +23,23 @@ public class MatrixFunc {
   }
  
     /**
-   * Multiplies two matricies together
+   * Multiplies a vector and matrix together
    * @v - Vector
    * @m - Matrix
    * @return - THe resulting product of the vector and matrix
    */
   public static float[] multiply(float[] v, float[][] m) throws IllegalArgumentException {
-    if(m1.length != m2.length) throw new IllegalArgumentException("Vector length must match Matrix row length");
-    float[] product = new float[m1.length];
+    if(v.length != m.length) throw new IllegalArgumentException("Vector length must match Matrix row length");
+    float[] product = new float[m[0].length];
     float dotP = 0;
-    for(int i = 0; i < m1.length; i++) {
-        for(int j = 0; j < m2[0].length; j++) {
-          for(int k = 0; k < m1.length; k++) {
-            dotP += m1[k]*m2[k][j];
-          }
-          product[i] = dotP;
-          dotP = 0;
+    for(int i = 0; i < v.length; i++) {
+      for(int j = 0; j < m[0].length; j++) {
+        for(int k = 0; k < v.length; k++) {
+          dotP += v[k]*m[k][j];
         }
+        product[j] = dotP;
+        dotP = 0;
+      }
     }
     return product;
   }
@@ -79,5 +79,15 @@ public class MatrixFunc {
       v1[i] = v1[i] + v2[i];
     }
     return v1;
+  }
+
+  public static float[][] add(float[][] m, float[] v) throws IllegalArgumentException {
+    if(m[0].length != v.length) throw new IllegalArgumentException("Matrix column length and vector length must be the same");
+    for(int i = 0; i < m.length; i++) {
+      for(int j = 0; j < v.length; j++) {
+        m[i][j] += v[j];
+      }
+    }
+    return m;
   }
 }
