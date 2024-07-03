@@ -21,6 +21,16 @@ public class Layer {
       }
     }
   }
+
+  /**
+   * Creates a layer based off of the given weights and biases
+   * @initWeights - The weights to be initialized with
+   * @initBiases - The biases to be initialized with
+   */
+  public Layer(float[][] initWeights, float[] initBiases) {
+    weights = initWeights;
+    biases = initBiases;
+  }
   
   /**
    * Takes in the matrix of inputs and alters the input with the weights and biases
@@ -40,6 +50,34 @@ public class Layer {
     return MatrixFunc.add(MatrixFunc.multiply(input, weights), biases);
   }
 
+  /**
+   * Using the Rectified Linear activation function to alter the output
+   * @input - The output of the input after weights and bias
+   * @return - The modified output
+   */
+  public float[][] activFunc_ReLU(float[][] input) {
+    for(int i = 0; i < input.length; i++) {
+      for(int j = 0; j < input[0].length; j++) {
+        if(input[i][j] < 0) input[i][j] = 0;
+      }
+    }
+    return input;
+  }
+  /**
+   * Using the Rectified Linear activation function to alter the output
+   * @input - The output of the input after weights and bias
+   * @return - The modified output
+   */
+  public float[] activFunc_ReLU(float[] input) {
+    for(int i = 0; i < input.length; i++) {
+      if(input[i] < 0) input[i] = 0;
+    }
+    return input;
+  }
+
+  /**
+   * Prints the weights and biases of the Layer
+   */
   public void printLayer() {
     System.out.println("Weights:");
     for(int i = 0; i < weights.length; i++) {
