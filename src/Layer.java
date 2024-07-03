@@ -28,7 +28,7 @@ public class Layer {
    * @return - A matrix of the altered data
    */
   public float[][] pass(float[][] inputs) {
-    
+    return MatrixFunc.add(MatrixFunc.multiply(inputs, weights), biases);
   }
   
   /**
@@ -37,5 +37,6 @@ public class Layer {
    * @returns - A vector of the latered data
    */
   public float[] pass(float[] input) {
+    return MatrixFunc.add(MatrixFunc.multiply(inputs, weights), biases);
   }
 }

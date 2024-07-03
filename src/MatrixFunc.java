@@ -57,5 +57,21 @@ public class MatrixFunc {
    * @m2 - Matrix two
    * @return - The resulting sum of the matricies
    */
-  // public static float[] add(float[] m1, float[] m2) {}
+  public static float[][] add(float[][] m1, float[][] m2) throws IllegalArgumentException {
+    if(m1.size != m2.size || m1[0].size != m2[0].size) throw new IllegalArgumentException("Matricies must be the same size");
+    for(int i = 0; i < m1.size; i++) {
+      for(int j = 0; j < m1[0].size; j++) {
+        m1[i][j] = m1[i][j] + m2[i][j];
+      }
+    }
+    return m1;
+  }
+
+  public static float[] add(float[] m1, float[] m2) throws IllegalArgumentException {
+    if(m1.size != m2.size) throw new IllegalArgumentException("Vectors must have the same length");
+    for(int i = 0; i < m1.size; i++) {
+      m1[i] = m1[i] + m2[i];
+    }
+    return m1;
+  }
 }
