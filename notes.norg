@@ -2,4 +2,14 @@
 ** Neural Networks from Scratch
    https://www.youtube.com/watch?v=Wo5dMEP_BbI&t=636s - Part 1
 
-
+* Terms
+** Neurons - Nodes that the input passes through getting converted by the wieghts and biases
+** Weights - The numerical value representing the strength to the connections to each Neuron from the input neuron that assists in modifying the input
+** Biases - The numerical value in each neuron that assists in modifying the input by offsetting the result for the activation function
+** Layer - A group or "layer" of neurons that recieves input from another group or "layer" of neurons
+*** Input Layer - The first layer in a neural network that accepts the input data
+*** Output Layer - The last layer of the neural network giving the probability distribution
+*** Hidden layer - The layers between the input and output layer
+** Activation Function - A function within the neuron that takes the output of the inputs after weights and biases are calculated determining whether the neuron fire or not
+** Rectifier Activation Function - A type of activation function that fire the neuron as long as the output is 0 or greater
+** Softmax Activation Function - A type of activation function for the output layer using eulers number to create a non zero output without losing information

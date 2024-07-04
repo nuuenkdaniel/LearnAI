@@ -76,6 +76,32 @@ public class Layer {
   }
 
   /**
+   * Using the Soft Max activation function to alter the output
+   * @input - The output of the input after weights and bias
+   * @return - The modified output
+   */
+  public float[][] activFunc_softMax(float[][] input) {
+    for(int i = 0; i < input.length; i++) {
+      for(int j = 0; j < input[0].length; j++) {
+        input[i][j] = Math.exp(input[i][j];
+      }
+    }
+    return input;
+  }
+
+  /**
+   * Using the Soft Max activation function to alter the output
+   * @input - The output of the input after weights and bias
+   * @return - The modified output
+   */
+  public float[] activFunc_softMax(float[] input) {
+    for(int i = 0; i < input.length; i++) {
+      input[i] = Math.exp(input[i]);
+    }
+    return input;
+  }
+
+  /**
    * Prints the weights and biases of the Layer
    */
   public void printLayer() {
