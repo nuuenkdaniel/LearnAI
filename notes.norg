@@ -13,3 +13,4 @@
 ** Activation Function - A function within the neuron that takes the output of the inputs after weights and biases are calculated determining whether the neuron fire or not
 ** Rectifier Activation Function - A type of activation function that fire the neuron as long as the output is 0 or greater
 ** Softmax Activation Function - A type of activation function for the output layer using eulers number to create a non zero output without losing information
+
