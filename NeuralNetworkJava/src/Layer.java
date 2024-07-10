@@ -81,9 +81,15 @@ public class Layer {
    * @return - The modified output
    */
   public static float[][] activFunc_softMax(float[][] input) {
+    float normVals;
     for(int i = 0; i < input.length; i++) {
+      normVals = 0;
       for(int j = 0; j < input[0].length; j++) {
         input[i][j] = Math.exp(input[i][j]);
+        normVals += input[i][j];
+      }
+      for(int k = 0; k < input[0].length; k++) {
+        input[i][k] /= normVals;
       }
     }
     return input;
@@ -95,7 +101,7 @@ public class Layer {
    * @return - The modified output
    */
   public static float[] activFunc_softMax(float[] input) {
-    final normVals;
+    float normVals;
     for(int i = 0; i < input.length; i++) {
       input[i] = Math.exp(input[i]);
       normVals += input[i];
