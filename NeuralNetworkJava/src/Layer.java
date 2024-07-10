@@ -55,7 +55,7 @@ public class Layer {
    * @input - The output of the input after weights and bias
    * @return - The modified output
    */
-  public float[][] activFunc_ReLU(float[][] input) {
+  public static float[][] activFunc_ReLU(float[][] input) {
     for(int i = 0; i < input.length; i++) {
       for(int j = 0; j < input[0].length; j++) {
         if(input[i][j] < 0) input[i][j] = 0;
@@ -68,7 +68,7 @@ public class Layer {
    * @input - The output of the input after weights and bias
    * @return - The modified output
    */
-  public float[] activFunc_ReLU(float[] input) {
+  public static float[] activFunc_ReLU(float[] input) {
     for(int i = 0; i < input.length; i++) {
       if(input[i] < 0) input[i] = 0;
     }
@@ -80,10 +80,10 @@ public class Layer {
    * @input - The output of the input after weights and bias
    * @return - The modified output
    */
-  public float[][] activFunc_softMax(float[][] input) {
+  public static float[][] activFunc_softMax(float[][] input) {
     for(int i = 0; i < input.length; i++) {
       for(int j = 0; j < input[0].length; j++) {
-        input[i][j] = Math.exp(input[i][j];
+        input[i][j] = Math.exp(input[i][j]);
       }
     }
     return input;
@@ -94,7 +94,7 @@ public class Layer {
    * @input - The output of the input after weights and bias
    * @return - The modified output
    */
-  public float[] activFunc_softMax(float[] input) {
+  public static float[] activFunc_softMax(float[] input) {
     for(int i = 0; i < input.length; i++) {
       input[i] = Math.exp(input[i]);
     }
