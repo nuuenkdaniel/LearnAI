@@ -76,7 +76,7 @@ public class Layer {
   }
 
   /**
-   * Using the Soft Max activation function to alter the output
+   * Using the Soft Max activation function to remove the negatives and normalize the output
    * @input - The output of the input after weights and bias
    * @return - The modified output
    */
@@ -90,17 +90,22 @@ public class Layer {
   }
 
   /**
-   * Using the Soft Max activation function to alter the output
+   * Using the Soft Max activation function to remove the negatives and normalize the output
    * @input - The output of the input after weights and bias
    * @return - The modified output
    */
   public static float[] activFunc_softMax(float[] input) {
+    final normVals;
     for(int i = 0; i < input.length; i++) {
       input[i] = Math.exp(input[i]);
+      normVals += input[i];
+    }
+    for(int j = 0; j < input.length; j++) {
+      input[i] /= normVals;
     }
     return input;
   }
-
+  
   /**
    * Prints the weights and biases of the Layer
    */
