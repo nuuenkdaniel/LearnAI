@@ -19,6 +19,7 @@ public class Main {
       }
       System.out.println();
     }*/
+    float[] input = new float[] {1f, 2f};
 
     Layer inp_layer = new Layer(2, 3);
     Layer layer1 = new Layer(3, 3);
@@ -31,5 +32,10 @@ public class Main {
     layer2.printLayer();
     layer3.printLayer();
     out_layer.printLayer();
+
+    float[] output = out_layer.pass(Layer.activFunc_ReLU(layer3.pass(Layer.activFunc_ReLU(layer2.pass(Layer.activFunc_ReLU(inp_layer.pass(input)))))));
+    for(int i = 0; i < output.length; i++) System.out.println(output[i]);
+    output = Layer.activFunc_softMax(output);
+    for(int i = 0; i < output.length; i++) System.out.println(output[i]);
   }
 }
