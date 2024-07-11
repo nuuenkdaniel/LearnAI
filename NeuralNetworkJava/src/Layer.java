@@ -82,14 +82,19 @@ public class Layer {
    */
   public static float[][] activFunc_softMax(float[][] input) {
     float normVals;
+    float max;
     for(int i = 0; i < input.length; i++) {
       normVals = 0;
-      for(int j = 0; j < input[0].length; j++) {
-        input[i][j] = (float)Math.exp(input[i][j]);
-        normVals += input[i][j];
+      max = input[i][0];
+      for(int j = 1; j < input.length; j++) {
+        if(max < input[i][j]) max = input[i][j];
       }
       for(int k = 0; k < input[0].length; k++) {
-        input[i][k] /= normVals;
+        input[i][k] = (float)Math.exp(input[i][k]);
+        normVals += input[i][k];
+      }
+      for(int l = 0; l < input[0].length; l++) {
+        input[i][l] /= normVals;
       }
     }
     return input;
@@ -102,12 +107,16 @@ public class Layer {
    */
   public static float[] activFunc_softMax(float[] input) {
     float normVals = 0;
-    for(int i = 0; i < input.length; i++) {
-      input[i] = (float)Math.exp(input[i]);
-      normVals += input[i];
+    float max = input[0];
+    for(int i = 1; i < input.length; i++) {
+      if(max < input[i]) max = input[i];
     }
     for(int j = 0; j < input.length; j++) {
-      input[j] /= normVals;
+      input[j] = (float)Math.exp(input[j]-max);
+      normVals += input[j];
+    }
+    for(int k = 0; k < input.length; k++) {
+      input[k] /= normVals;
     }
     return input;
   }
