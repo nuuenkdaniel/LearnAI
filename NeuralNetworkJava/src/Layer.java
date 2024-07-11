@@ -120,15 +120,17 @@ public class Layer {
     for(int i = 0; i < weights.length; i++) {
       System.out.print("[");
       for(int j = 0; j < weights[0].length; j++) {
-        System.out.print(weights[i][j]+" ");
+        System.out.print(weights[i][j]);
+        if(j != weights[0].length-1) System.out.print(" ");
       }
       System.out.println("]");
     }
 
     System.out.println("Biases:");
     System.out.print("[");
-    for(int j = 0; j < biases.length; j++) {
-      System.out.print(biases[j]+" ");
+    for(int k = 0; k < biases.length; k++) {
+      System.out.print(biases[k]);
+      if(k != biases.length-1) System.out.print(" ");
     }
     System.out.println("]\n");
   }

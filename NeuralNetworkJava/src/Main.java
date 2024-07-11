@@ -19,7 +19,7 @@ public class Main {
       }
       System.out.println();
     }*/
-    float[] input = new float[] {1f, 2f};
+    float[] input = new float[] {200f, 2f};
 
     Layer inp_layer = new Layer(2, 3);
     Layer layer1 = new Layer(3, 3);
