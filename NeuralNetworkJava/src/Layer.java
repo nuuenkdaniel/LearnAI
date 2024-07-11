@@ -120,6 +120,19 @@ public class Layer {
     }
     return input;
   }
+
+  /**
+   * Returns the average of the loss after given the loss from the loss function
+   * @lossDat - The loss data from the loss function
+   * @return - The average of loss
+   */
+  public static float loss(float[] lossDat) {
+    float sum = 0;
+    for(int i = 0; i < lossDat.length; i++) {
+      sum += lossDat[i];
+    }
+    return sum/lossDat.length;
+  }
   
   /**
    * Prints the weights and biases of the Layer
