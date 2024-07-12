@@ -1,6 +1,6 @@
 * Youtube Tutorials
 ** Neural Networks from Scratch
-   https://www.youtube.com/watch?v=Wo5dMEP_BbI&t=636s - Part 1
+   https://www.youtube.com/watch?v=Wo5dMEP_BbI&t=636s - Playlist
 
 * Terms
 ** Neurons - Nodes that the input passes through getting converted by the wieghts and biases
@@ -13,4 +13,6 @@
 ** Activation Function - A function within the neuron that takes the output of the inputs after weights and biases are calculated determining whether the neuron fire or not
 ** Rectifier Activation Function - A type of activation function that fire the neuron as long as the output is 0 or greater
 ** Softmax Activation Function - A type of activation function for the output layer using eulers number to create a non zero output without losing information
+** Back propagation - 
+** Categorical Cross-Entry Loss
 
