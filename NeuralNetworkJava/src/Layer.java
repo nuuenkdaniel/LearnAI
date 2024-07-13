@@ -133,6 +133,29 @@ public class Layer {
     }
     return sum/lossDat.length;
   }
+
+  /**
+   * Returns the probability of the actual result
+   * @confVector - The confidence vector from the final layers output
+   * @actualRes - The vector indicating the expected actual result
+   */
+  public static float[] catCrossEntropy(float[] confVector, int[] actualRes) throws IllegalArgumentException {
+    if(actualRes.length == 0) {
+      if(actualRes[0] > confVector.length-1 || actualRes[0] < 0) throw new IllegalArgumentException("If categorical labels must be arr size 1");
+      return new float[] { -((float)(Math.log(confVector[actualRes[0]]))) };
+    }
+    else if(actualRes.length == confVector.length) {
+      int onesIndex = -1;
+      for(int i = 0; i < actualRes.length; i++) {
+        if(actualRes[i] != 1 || actualRes[i] != 0) throw new IllegalArgumentException("If categorical labels, must consists of all 1s and 0s");
+        if(onesIndex != -1 && actualRes[i] == 1) throw new IllegalArgumentException("If categorical labels, must have no more than one 1");
+        else onesIndex = i;
+      }
+      if(onesIndex == -1) throw new IllegalArgumentException("If categorical labels, must have at least one 1");
+      return new float[] { confVector[onesIndex] };
+    }
+    else throw new IllegalArgumentException("ActualRes does not match any type of accepted input");
+  }
   
   /**
    * Prints the weights and biases of the Layer
