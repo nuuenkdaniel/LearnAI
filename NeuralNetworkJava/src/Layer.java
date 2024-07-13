@@ -152,7 +152,7 @@ public class Layer {
         else onesIndex = i;
       }
       if(onesIndex == -1) throw new IllegalArgumentException("If categorical labels, must have at least one 1");
-      return new float[] { confVector[onesIndex] };
+      return new float[] { -((float)(Math.log(confVector[onesIndex]))) };
     }
     else throw new IllegalArgumentException("ActualRes does not match any type of accepted input");
   }
