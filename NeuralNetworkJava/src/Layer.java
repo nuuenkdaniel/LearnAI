@@ -33,7 +33,7 @@ public class Layer {
   }
   
   /**
-   * Takes in the matrix of inputs and alters the input with the weights and biases
+   * Takes in the matrix of inputs and calculates the output by summing the multiplied weights and adding the bias
    * @inputs - The inputs being passed in to the layer
    * @return - A matrix of the altered data
    */
@@ -42,7 +42,7 @@ public class Layer {
   }
   
   /**
-   * Takes the vector input and alters the input with the weights and biases
+   * Takes the vector input and calculate the output by summing the multiplied weights and adding the bias
    * @inputs - The inputs being passed in to the layer
    * @returns - A vector of the latered data
    */
@@ -156,6 +156,33 @@ public class Layer {
     }
     else throw new IllegalArgumentException("ActualRes does not match any type of accepted input");
   }
+
+  public static float[] catCrossEntropy(float[][] confMatrix, int[] catLabels) throws IllegalArgumentException {
+    if(catLabels.length != confMatrix.length) throw new IllegalArgumentException("The length of the categorical labels must match the amount of rows of the confidence matrix");
+    float[] loss = new float[catLabels.length];
+    for(int i = 0; i < confMatrix.length; i++) {
+      loss[i] = -((float)(Math.log(confMatrix[i][catLabels[i]])));
+    }
+    return loss;
+  }
+
+  public static float[] catCrossEntropy(float[][] confMatrix, int[][] oneHotEnc) throws IllegalArgumentException {
+    if(confMatrix.length != oneHotEnc.length || confMatrix[0].length != oneHotEnc[0].length) throw new IllegalArgumentException("Matricies must be the same size");
+    float[] loss = new float[oneHotEnc.length];
+    int onesIndex;
+    for(int i = 0; i < oneHotEnc.length; i++) {
+      onesIndex = 0;
+      for(int j = 0; j < oneHotEnc[0].length; j++) {
+        if(oneHotEnc[i][j] != 0 && oneHotEnc[i][j] != 1) throw new IllegalArgumentException("If one-hot encoded values must be either 0 or 1");
+        if(onesIndex > 0 && oneHotEnc[i][j] == 1) throw new IllegalArgumentException("If one-hot encoded there may only be one possible true one");
+        else if(oneHotEnc[i][j] == 1) onesIndex = j;
+      }
+      loss[i] = -((float)(Math.log(confMatrix[i][onesIndex])));
+    }
+    return loss;
+  }
+
+  /**
   
   /**
    * Prints the weights and biases of the Layer
