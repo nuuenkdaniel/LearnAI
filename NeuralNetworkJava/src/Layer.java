@@ -135,7 +135,7 @@ public class Layer {
   }
 
   /**
-   * Returns the probability of the actual result
+   * Returns the loss of the output given the actual result
    * @confVector - The confidence vector from the final layers output
    * @actualRes - The vector indicating the expected actual result
    */
@@ -157,6 +157,7 @@ public class Layer {
     else throw new IllegalArgumentException("ActualRes does not match any type of accepted input");
   }
 
+  //catLabels
   public static float[] catCrossEntropy(float[][] confMatrix, int[] catLabels) throws IllegalArgumentException {
     if(catLabels.length != confMatrix.length) throw new IllegalArgumentException("The length of the categorical labels must match the amount of rows of the confidence matrix");
     float[] loss = new float[catLabels.length];
@@ -166,6 +167,7 @@ public class Layer {
     return loss;
   }
 
+  //one-hot encoded
   public static float[] catCrossEntropy(float[][] confMatrix, int[][] oneHotEnc) throws IllegalArgumentException {
     if(confMatrix.length != oneHotEnc.length || confMatrix[0].length != oneHotEnc[0].length) throw new IllegalArgumentException("Matricies must be the same size");
     float[] loss = new float[oneHotEnc.length];
@@ -181,6 +183,16 @@ public class Layer {
     }
     return loss;
   }
+
+  public static float accuracy(float[][] confMatrix, int[] classTargets) throws IllegalArgumentException {
+    if(confMatrix.length != classTargets) throw new IllegalArgumentException("class target length must match matrix row amount");
+    int[] predic = new int[confMatrix.length];
+    float max;
+    for(int i = 0; i < confMatrix.length; i++) {
+      max = confMatrix[i][0];
+      for(int j = 1; j < confMatrix[0].length; j++) {
+        if(confMatrix[i][j] > max) {
+
 
   /**
   
