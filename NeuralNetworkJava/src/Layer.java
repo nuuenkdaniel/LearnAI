@@ -184,16 +184,28 @@ public class Layer {
     return loss;
   }
 
+  /**
+   * Calculates how accurate the output was
+   * @confMatrix - The probability distribution of the output
+   * @classTargets - The correct option
+   * @return - Returns the accuracy of the output
+   */
   public static float accuracy(float[][] confMatrix, int[] classTargets) throws IllegalArgumentException {
-    if(confMatrix.length != classTargets) throw new IllegalArgumentException("class target length must match matrix row amount");
+    if(confMatrix.length != classTargets.length) throw new IllegalArgumentException("Class target length must match matrix row amount");
     int[] predic = new int[confMatrix.length];
-    float max;
     for(int i = 0; i < confMatrix.length; i++) {
-      max = confMatrix[i][0];
+      predic[i] = 0;
       for(int j = 1; j < confMatrix[0].length; j++) {
-        if(confMatrix[i][j] > max) {
-
-
+        if(confMatrix[i][j] > confMatrix[i][predic[i]]) predic[i] = j;
+      }
+    }
+    int correctPredic = 0;
+    for(int k = 0; k < predic.length; k++) {
+      if(predic[k] == classTargets[k]) correctPredic++;
+    }
+    return (float)(correctPredic)/(float)(classTargets.length);
+  }
+  
   /**
   
   /**
