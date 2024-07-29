@@ -3,6 +3,8 @@ import java.util.Random;
 public class Layer {
   public float[][] weights;
   public float[] biases;
+  public float[] saved_inp;
+  public float[][] saved_inp2d;
 
   /**
    * Initializes new layer with the specified inputs and neurons
@@ -13,6 +15,8 @@ public class Layer {
     Random rand = new Random();
     weights = new float[nInputs][nNeurons];
     biases = new float[nNeurons];
+    saved_inp = null;
+    saved_inp2d = null;
     
     //Populates the weights with random numbers from -0.1 to 0.1
     for(int i = 0; i < weights.length; i++) {
@@ -30,6 +34,8 @@ public class Layer {
   public Layer(float[][] initWeights, float[] initBiases) {
     weights = initWeights;
     biases = initBiases;
+    saved_inp = null;
+    saved_inp2d = null;
   }
   
   /**
@@ -38,6 +44,7 @@ public class Layer {
    * @return - A matrix of the altered data
    */
   public float[][] pass(float[][] inputs) {
+    saved_inp2d = inputs;
     return MatrixFunc.add(MatrixFunc.multiply(inputs, weights), biases);
   }
   
@@ -47,6 +54,7 @@ public class Layer {
    * @returns - A vector of the latered data
    */
   public float[] pass(float[] input) {
+    saved_inp = input;
     return MatrixFunc.add(MatrixFunc.multiply(input, weights), biases);
   }
 
